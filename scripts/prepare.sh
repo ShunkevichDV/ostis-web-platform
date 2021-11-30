@@ -50,7 +50,7 @@ stage "Clone projects"
 clone_project https://github.com/ShunkevichDV/sc-machine.git sc-machine 0.6.0
 clone_project https://github.com/ostis-dev/sc-web.git sc-web 0.6.0
 clone_project https://github.com/ostis-dev/ims.ostis.kb.git ims.ostis.kb 432bbaa
-clone_project https://github.com/ostis-apps/tex2sc-translator.git scripts/kb_scripts feature
+clone_project https://github.com/ostis-apps/tex2sc-translator.git tex2sc-translator feature
 stage "Prepare projects"
 
 prepare()
