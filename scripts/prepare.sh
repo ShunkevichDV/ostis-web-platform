@@ -55,11 +55,8 @@ clone_project https://github.com/ShunkevichDV/sc-machine.git sc-machine 0.6.0
 clone_project https://github.com/ostis-dev/sc-web.git sc-web 0.6.0
 clone_project https://github.com/ostis-dev/ims.ostis.kb.git ims.ostis.kb 432bbaa
 if (( $clone_monography == 1 )); then
-	clone_project https://github.com/semsystems/monography2020.git tex2sc
-	cd monography2020
-	sudo ./translate2sc.sh
-	cd ..
-	echo -e "#translated_monography\n monography2020/translated_scs\n" | sudo tee repo.path
+	clone_project git@github.com:semsystems/monography2020.git monography2020 tex2sc
+	echo -e "#translated_monography\nmonography2020/translated_scs\n" >> ../repo.path
 fi
 stage "Prepare projects"
 
