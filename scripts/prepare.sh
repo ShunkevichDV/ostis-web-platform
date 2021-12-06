@@ -12,6 +12,7 @@ st=1
 
 build_kb=1
 build_sc_machine=1
+clone_monography=0
 
 while [ "$1" != "" ]; do
 	case $1 in
@@ -21,6 +22,9 @@ while [ "$1" != "" ]; do
 		"no_build_sc_machine" )
 			build_sc_machine=0
 			build_kb=0
+			;;
+		"clone_monography" )
+			clone_monography=1
 			;;
 	esac
 	shift
@@ -50,7 +54,13 @@ stage "Clone projects"
 clone_project https://github.com/ShunkevichDV/sc-machine.git sc-machine 0.6.0
 clone_project https://github.com/ostis-dev/sc-web.git sc-web 0.6.0
 clone_project https://github.com/ostis-dev/ims.ostis.kb.git ims.ostis.kb 432bbaa
-clone_project git@github.com:ostis-apps/tex2sc-translator.git scripts/kb_scripts/tex2sc-translator feature
+if (( $clone_monography == 1 )); then
+	clone_project https://github.com/semsystems/monography2020.git tex2sc
+	cd monography2020
+	sudo ./translate2sc.sh
+	cd ..
+	echo -e "#translated_monography\n monography2020/translated_scs\n" | sudo tee repo.path
+fi
 stage "Prepare projects"
 
 prepare()
