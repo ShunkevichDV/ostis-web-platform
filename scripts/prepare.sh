@@ -14,7 +14,7 @@ build_kb=1
 build_sc_machine=1
 clone_monography=0
 
-monography_path="#translated_monography\nmonography2020/translated_scs\n"
+monography_path="\n#translated_monography\nmonography2020/translated_scs\n"
 
 while [ "$1" != "" ]; do
 	case $1 in
@@ -56,9 +56,9 @@ stage "Clone projects"
 clone_project https://github.com/ShunkevichDV/sc-machine.git sc-machine 0.6.0
 clone_project https://github.com/ostis-dev/sc-web.git sc-web 0.6.0
 clone_project https://github.com/ostis-dev/ims.ostis.kb.git ims.ostis.kb 432bbaa
-if (( $clone_monography == 1 )); then
+if [ $clone_monography == 1 ]; then
 	clone_project git@github.com:semsystems/monography2020.git monography2020 tex2sc
-	if (( grep -Fxq "$FILENAME" my_list.txt )) then
+	if (( $(grep -q "$monography_path" <<< ../repo.path) )); then
 		echo -e $monography_path >> ../repo.path
 	fi
 fi
