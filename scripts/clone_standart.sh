@@ -15,7 +15,7 @@ clone_project()
 	fi
 }
 
-clone_project git@github.com:semsystems/monography2020.git ostis-standart tex2sc
+clone_project git@github.com:ostis-apps/ostis-standard.git ostis-standart tex2sc
 	if ! grep -q $standart_path ../repo.path ; then
                 echo "#standart" >> ../repo.path 
                 echo $standart_path >> ../repo.path
