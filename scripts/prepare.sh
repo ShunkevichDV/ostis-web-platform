@@ -12,6 +12,8 @@ st=1
 
 build_kb=1
 build_sc_machine=1
+clone_standart=0
+
 
 while [ "$1" != "" ]; do
 	case $1 in
@@ -21,6 +23,9 @@ while [ "$1" != "" ]; do
 		"no_build_sc_machine" )
 			build_sc_machine=0
 			build_kb=0
+			;;
+		"clone_standart" )
+			clone_standart=1
 			;;
 	esac
 	shift
@@ -50,7 +55,9 @@ stage "Clone projects"
 clone_project https://github.com/ShunkevichDV/sc-machine.git sc-machine 0.6.0
 clone_project https://github.com/ostis-dev/sc-web.git sc-web 0.6.0
 clone_project https://github.com/ostis-dev/ims.ostis.kb.git ims.ostis.kb 432bbaa
-
+if [ $clone_standart == 1 ]; then
+	./clone_standart.sh
+fi
 stage "Prepare projects"
 
 prepare()
